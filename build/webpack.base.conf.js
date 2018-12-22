@@ -49,6 +49,19 @@ module.exports = {
       {
         test: /\.js$/,
         loader: 'babel-loader',
+        include: [
+          resolve('src'),
+          resolve('test'),
+          resolve('node_modules/webpack-dev-server/client'),
+          resolve('node_modules/element-ui/src'),
+          resolve('node_modules/element-ui/packages'),
+          resolve('node_modules/_element-ui@2.4.6@element-ui/src'),
+          resolve('node_modules/_element-ui@2.4.6@element-ui/packages')
+        ]
+      }, 
+      {
+        test: /\.js$/,
+        loader: 'babel-loader',
         include: [resolve('src'), resolve('test'), resolve('node_modules/webpack-dev-server/client')]
       },
       {

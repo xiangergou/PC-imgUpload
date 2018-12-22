@@ -1,0 +1,191 @@
+/*
+ * @Author: FT.FE.Bolin
+ * @Date: 2018-04-11 17:09:53
+ * @Last Modified by: FT.FE.Bolin
+ * @Last Modified time: 2018-11-20 14:24:01
+ */
+
+@import './element-ui.scss';
+@import './mixin.scss';
+body {
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  font-family: Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB, Microsoft YaHei, Arial, sans-serif;
+}
+
+html {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#app {
+  height: 100%;
+  min-width: 1280px;
+  overflow: auto;
+  background: #F6F6F6;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+ul {
+  list-style: none;
+  padding: 0px;
+  margin: 0px;
+}
+
+a:focus,
+a:active {
+  outline: none;
+}
+
+:focus {
+  outline: none;
+}
+
+a,
+a:focus,
+a:hover {
+  cursor: pointer;
+  color: inherit;
+  text-decoration: none;
+}
+
+.clearfix {
+  &:after {
+    visibility: hidden;
+    display: block;
+    font-size: 0;
+    content: " ";
+    clear: both;
+    height: 0;
+  }
+}
+
+//vue router transition css
+.fade-enter-active,
+.fade-leave-active {
+  transition: all .2s ease
+}
+
+.fade-enter,
+.fade-leave-active {
+  opacity: 0;
+}
+
+.hamburger-container:focus {
+  outline: none;
+}
+
+//main-container全局样式
+.app-main {
+  min-height: 100%;
+  margin: 20px;
+}
+
+.layout-header {
+  height: 60px;
+  background: #fff;
+}
+
+.layout_pageHeader {
+  background: #fff;
+  margin: -20px -20px 20px -20px;
+  padding: 20px 20px 0;
+}
+
+.layout-container {
+  background: #fff;
+  padding: 20px;
+  border-radius: 5px;
+}
+
+.model-search .filter-item {
+  margin-left: 10px;
+}
+
+.img-center,
+.image-center {
+  background-origin: content-box;
+  background-position: 50% 50%;
+  background-size: contain;
+  background-repeat: no-repeat;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.tips {
+  color: #9f9f9f;
+}
+
+.right {
+  float: right;
+}
+
+.left {
+  float: left;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.list-group-item:first-child {
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+}
+
+.list-group-item {
+  position: relative;
+  display: block;
+  padding: 10px 15px;
+  margin-bottom: -1px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+}
+
+.list-group {
+  padding: 0;
+  margin: 0;
+  min-height: 20px;
+}
+
+.list-group-item {
+  cursor: move;
+}
+
+.list-group-item i {
+  cursor: pointer;
+}
+
+.svg-icon {
+  width: 1em;
+  height: 1em;
+  vertical-align: -0.15em;
+  fill: currentColor;
+  overflow: hidden;
+}
+
+.iconfont {
+  display: inline-block;
+  font-style: normal;
+  color: #fff;
+}
+
+input[type='file']{
+  position: absolute;
+  clip: rect(0 0 0 0);
+}
