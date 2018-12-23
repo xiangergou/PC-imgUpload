@@ -1,3 +1,10 @@
+/*
+ * @Author: xiangting
+ * @Date: 2018-12-23 12:23:50
+ * @Last Modified by: xiangting
+ * @Last Modified time: 2018-12-23 12:23:50
+ */
+
 <template>
   <div>
     <imgUpload

@@ -1,8 +1,8 @@
 /*
  * @Author: FT.FE.Bolin
  * @Date: 2018-04-11 17:09:53
- * @Last Modified by: FT.FE.Bolin
- * @Last Modified time: 2018-11-20 14:24:01
+ * @Last Modified by: ergou_xiang
+ * @Last Modified time: 2018-12-23 13:11:51
  */
 
 @import './element-ui.scss';
@@ -21,8 +21,7 @@ html {
 html,
 body,
 #app {
-  height: 100%;
-  min-width: 1280px;
+  // min-width: 1280px;
   overflow: auto;
   background: #F6F6F6;
 }
