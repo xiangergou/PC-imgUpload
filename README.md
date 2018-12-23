@@ -3,10 +3,9 @@
 > 基于vue+element+sass实现的图片上传、裁剪、预览、下载等集多功能于一体的图片操作组件，常用于后端管理项目图片上传中。
 
 
-与传统图片上传流程不同的是， 本组件将上传的file转为base64，在页面直接展示。
-待裁剪等操作之后返回转换后的图片地址。
+本组件将上传的图片file转为base64，以期能在页面直接展示， 待裁剪等操作之后返回转换后的图片地址。
 
-本组件基于photoswipe、vue-cropper、vuedraggable， 站在前人肩膀整合而成。
+基于photoswipe、vue-cropper、vuedraggable， 站在前人肩膀整合而成。
 
 ![image](https://github.com/xiangergou/imgUpload-npm/blob/master/static/img.gif)
 ```js
