@@ -2,7 +2,7 @@
  * @Author: FT.FE.Bolin
  * @Date: 2018-04-11 16:50:08
  * @Last Modified by: xiangting
- * @Last Modified time: 2018-12-22 20:34:45
+ * @Last Modified time: 2018-12-23 11:55:23
  */
 
 <template>
@@ -26,8 +26,8 @@
           :src="item.src"
           class="preview-img img-center">
         <span
-          v-if="item.picTag"
-          class="preview-tags">{{ item.picTag }}</span>
+          v-if="showImageName && (item.picTag || item.title)"
+          class="preview-tags">{{ item.picTag || item.title }}</span>
         <span class="preview-item-actions">
           <span
             class="preview-item__item-preview"
@@ -79,6 +79,12 @@ export default {
         return {}
       }
     },
+    showImageName: {
+      type: Boolean,
+      default () {
+        return false
+      }
+    },
     // 是否启用拖拽
     disabled: {
       type: Boolean,
@@ -116,7 +122,7 @@ export default {
         this.list.map((item, index) => {
           item.sortNum = item.sortNum ? item.sortNum : Math.random()
           item.type = item.type || 1
-          item.title = item.picTag || ''
+          item.title = item.picTag || item.title || ''
         })
       }
     },
@@ -161,13 +167,13 @@ export default {
         type: 'warning'
       }).then(() => {
         this.list.splice(index, 1)
-        this.handleEmit()
+        this.handleEmit(item)
       }).catch(() => {
 
       })
     },
-    handleEmit () {
-      this.$emit('emitDelete', this.list)
+    handleEmit (item) {
+      item && this.$emit('emitDelete', [this.list, item])
     },
     startDrag () {
       this.isDragging = true
@@ -237,10 +243,14 @@ export default {
     }
     .preview-tags {
       position: absolute;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
       bottom: 0;
       text-align: center;
       width: 100%;
       height: 30px;
+      line-height: 30px;
       background: rgba(0, 0, 0, 0.5);
       color: #fff;
       font-size: 12px;

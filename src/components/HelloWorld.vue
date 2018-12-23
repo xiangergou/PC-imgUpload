@@ -23,6 +23,7 @@ export default {
   data () {
     return {
       imgList: [{
+        title: 'HelloWorlddsad.png',
         src: 'http://www.17qq.com/img_qqtouxiang/69182556.jpeg'
       }]
     }

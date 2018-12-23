@@ -1,24 +1,26 @@
 /*
- * @Author: FT.FE.Bolin
- * @Date: 2018-04-11 17:11:13
- * @Last Modified by: FT.FE.Bolin
- * @Last Modified time: 2018-11-20 16:02:38
+ * @Author: xiangting
+ * @Date: 2018-12-23 12:19:51
+ * @Last Modified by: xiangting
+ * @Last Modified time: 2018-12-23 12:19:51
  */
 
 <template>
   <div class="layout-container">
     <!-- 图片上传 -->
     <upload-image
-      :multiple="true"
+      :multiple="isMultiple"
       :on-success="handleSuccess"
-      :before-upload="beforeUpload"/>
+      :limitSize="limitSize"
+      />
     <!-- 图片预览排序 -->
     <div style="width: 500px; margin-top: 20px;">
       <Preview
         :pic-list="cropperData"
-        :delete-icon="true"
+        :delete-icon="canDelete"
         :disabled="false"
-        :item-size="{width: 122, height: 122}"
+        :showImageName="true"
+        :item-size="imgWidth"
         @emitDelete="emitDelete"/>
     </div>
     <!-- 图片裁剪 -->
@@ -28,9 +30,9 @@
   </div>
 </template>
 <script>
-import UploadImage from '@/components/Upload/image'
-import Preview from '@/components/Preview/Preview'
-import ImageCropper from '@/components/ImageCropper/Cropper'
+import UploadImage from './Upload/image'
+import Preview from './Preview/Preview'
+import ImageCropper from './ImageCropper/Cropper'
 export default {
   name: 'ExampleImage',
   components: {
@@ -38,41 +40,69 @@ export default {
     Preview,
     ImageCropper
   },
-  filters: {
-
+  props: {
+    limitSize: {
+      type: Number,
+      default: () => 1
+    },
+    imgWidth: {
+      type: Object,
+      default: () => '{width: 122, height: 122}'
+    },
+    isMultiple: { // 单张或多张
+      type: Boolean,
+      default: () => true
+    },
+    hasUploadImgList: {
+      required: false,
+      type: Array,
+      default: () => []
+    },
+    canDelete: {
+      required: false,
+      type: Boolean,
+      default: true
+    }
   },
   data () {
     return {
       layer_cropper: false,
       cropperList: [],
-      cropperData: []
+      cropperData: [...this.hasUploadImgList]
     }
   },
   computed: {
 
   },
   methods: {
-    beforeUpload (file) {
-      const isLimit1M = file.size / 1024 / 1024 < 1
-      if (!isLimit1M) {
-        this.$message.warning('图片大小不能超过1M！')
-        return false
-      }
-      return true
-    },
     handleSuccess ({ cropperList }) {
-      this.$message.success('上传成功')
+      (cropperList.length > 1) && this.$message.success('上传成功')
       this.cropperList = cropperList
       this.layer_cropper = true
     },
     /* $emit */
     // 删除图片
     emitDelete (val) {
-      this.cropperData = val
+      this.cropperData = val[0]
+      this.$emit('deleteImg', val[1])
     },
     // 裁剪后图片列表
     emitCropperData (list = []) {
       this.cropperData = [...this.cropperData, ...list]
+    }
+  },
+  watch: {
+    hasUploadImgList: {
+      immediate: true,
+      handler (val) {
+        val.forEach(item => {
+          item.hasUploaded = true
+        })
+      }
+    },
+    cropperData (list) {
+      let arr = list.length > 0 && list.filter(item => item && !item.hasUploaded)
+      this.$emit('outputImg', arr)
     }
   }
 }

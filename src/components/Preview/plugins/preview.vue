@@ -2,7 +2,7 @@
  * @Author: FT.FE.Bolin
  * @Date: 2018-04-11 16:50:01
  * @Last Modified by: xiangting
- * @Last Modified time: 2018-12-22 21:12:22
+ * @Last Modified time: 2018-12-23 12:09:44
  */
 
 <template>
@@ -108,13 +108,13 @@ export default {
       this.photoswipe.init()
       // 默认下载当前index图片
       this.downloadImageUrl = list[index].src
-      this.downloadImageName = `麦滴管家_${list[index].title}`
+      this.downloadImageName = `银盒宝成_${list[index].title}`
 
       /* 监听图片变换，替换当前下载图片链接 */
       this.photoswipe.listen('afterChange', (e) => {
         this.rotateCount = 0
         this.downloadImageUrl = list[this.photoswipe.getCurrentIndex() || 0].src
-        this.downloadImageName = `麦滴管家_${list[this.photoswipe.getCurrentIndex() || 0].title}`
+        this.downloadImageName = `银盒宝成_${list[this.photoswipe.getCurrentIndex() || 0].title}`
       })
     },
     close () {

@@ -17,11 +17,9 @@
 export default {
   name: 'UploadImage',
   props: {
-    beforeUpload: {
-      type: Function,
-      default () {
-        return () => {}
-      }
+    limitSize: {
+      type: Number,
+      default: () => 1
     },
     onSuccess: {
       type: Function,
@@ -46,7 +44,7 @@ export default {
     /* 选择图片 */
     async uploadImg (e) {
       if (!e.target.value) {
-        console.log('取消上传...')
+        console.warn('取消上传...')
         return false
       }
       const uploadList = []
@@ -85,6 +83,16 @@ export default {
           this.$message.error(`请上传${this.accept.replace(/image\//gi, '')}的图片`)
           e.target.value = null
           return false
+        } else if (files[i].size / 1024 / 1024 > this.limitSize) {
+          let msg = files.length === 1 ? '该' : `第${i + 1}`
+          // this.$message.error(`第${i}图片大小超过${this.limitSize}M限制`)
+          this.$notify({
+            title: '警告',
+            message: `${msg}图片大小超过${this.limitSize}M限制`,
+            type: 'warning'
+          })
+          e.target.value = null
+          continue
         }
         uploadList.push(await readFileAsync(files[i]))
       }
