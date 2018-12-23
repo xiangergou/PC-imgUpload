@@ -1,6 +1,13 @@
 <template>
   <div>
     <imgUpload
+      :limitSize=1
+      :isMultiple="true"
+      :canDelete="true"
+      :hasUploadImgList="imgList"
+      @outputImg="getOutputImgList"
+      @deleteImg="getDeleteImg"
+      :imgWidth='{width: 122, height: 122}'
     />
   </div>
 </template>
