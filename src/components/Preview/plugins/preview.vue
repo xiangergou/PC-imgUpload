@@ -194,8 +194,8 @@ export default {
 </script>
 
 <style lang="scss">
-  @import './css/dist/default-skin/default-skin.css';
-  @import './css/dist/photoswipe.css';
+  @import 'photoswipe/dist/photoswipe.css';
+  @import 'photoswipe/dist/default-skin/default-skin.css';
   .fht__download {
     text-align: center;
     width: 44px;
