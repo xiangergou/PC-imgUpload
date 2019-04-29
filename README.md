@@ -14,12 +14,11 @@
     :isMultiple="true" // 是否开启多张上传， 默认多张
     :canDelete="true"  // 是否开启删除功能，默认开启
     :hasUploadImgList="imgList"  // 已上传的图片回显，将接口返回的图片地址以对象数组的格式传入。 {src: 'address', title: 'img.png'}
-    @outputImg="getOutputImgList" // 上传后的转成的base64位地址，可转为file
+    @outputImg="getOutputImgList" // 上传后转成的base64位地址，可转为file
     @deleteImg="getDeleteImg" // 视图层面删除返回的图片
     :imgWidth='{width: 122, height: 122}' // 设置图片默认大小
   />
 ```
 
-之后会尝试再度封装，发布到npm
 
 
